@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f7efdf">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Matreahka VPN">
+<title>Matreahka VPN</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f7efdf;color:#511e29;font-family:-apple-system,BlinkMacSystemFont,sans-serif}
+.app{max-width:500px;margin:auto;padding:20px 20px 100px}
+header{text-align:center;padding:20px 0;border-bottom:1px solid #ddcba9}
+.kicker{font-size:9px;letter-spacing:2px;color:#927d69}
+.logo{font-size:29px;font-weight:900;letter-spacing:2px;margin-top:8px}
+.vpn{color:#982b38;letter-spacing:7px;font-weight:bold}
+.ornament{color:#c79b50;font-size:22px;margin-top:10px}
+.hero{text-align:center;padding:25px 0}
+.doll{font-size:80px}
+h1{font-size:25px;margin:10px 0}
+.sub{color:#927d69;font-size:13px}
+.panel{background:#fff9ed;border:1px solid #ddcba9;border-radius:22px;padding:20px;text-align:center}
+.status{font-size:12px;font-weight:bold;letter-spacing:1px}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#b58c50;margin-right:8px}
+.connect{width:185px;height:185px;border-radius:50%;border:5px solid #c79b50;background:#982b38;color:white;margin:22px auto;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer}
+.connect strong{font-size:17px;letter-spacing:1px;margin-top:10px}
+.connect span{font-size:32px}
+.connect small{font-size:10px;margin-top:7px;color:#f2d9b2}
+.note{font-size:10px;color:#927d69;line-height:1.5}
+.section{font-size:11px;letter-spacing:2px;color:#927d69;margin:25px 0 10px;font-weight:bold}
+.item{display:flex;align-items:center;gap:14px;background:#fff9ed;border:1px solid #e3d3b6;padding:16px;border-radius:16px;margin-top:10px;cursor:pointer}
+.flag{font-size:27px}
+.grow{flex:1}
+.name{font-weight:bold;font-size:15px}
+.detail{font-size:12px;color:#927d69;margin-top:4px}
+.arrow{color:#982b38;font-size:22px}
+.page{display:none}
+.page.active{display:block}
+h2{font-size:25px;margin-top:25px}
+.info{background:#f1e5ce;border-radius:16px;padding:17px;margin-top:15px}
+.info p{font-size:13px;line-height:1.6;color:#927d69}
+.nav{position:fixed;bottom:0;left:0;right:0;background:#fff9ed;border-top:1px solid #ddcba9;display:flex;justify-content:center;padding:10px 0 calc(10px + env(safe-area-inset-bottom))}
+.nav button{flex:1;max-width:120px;border:0;background:none;color:#927d69;font-size:10px;padding:5px}
+.nav button.active{color:#982b38;font-weight:bold}
+.nav span{display:block;font-size:22px;margin-bottom:4px}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+<div class="kicker">РУССКИЙ ХАРАКТЕР · ЛИЧНАЯ ЗАЩИТА</div>
+<div class="logo">MATREAHKA</div>
+<div class="vpn">✦ V P N ✦</div>
+<div class="ornament">❧ ❖ ❧ ❖ ❧</div>
+</header>
+
+<section id="home" class="page active">
+<div class="hero">
+<div class="doll">🪆</div>
+<h1>Ваш интернет. Ваши правила.</h1>
+<div class="sub">Личное пространство в сети</div>
+</div>
+<div class="panel">
+<div class="status"><i class="dot" id="dot"></i><span id="status">НЕ ПОДКЛЮЧЕНО</span></div>
+<button class="connect" id="connect">
+<span id="symbol">✦</span>
+<strong id="connectText">ПОДКЛЮЧИТЬ</strong>
+<small>Демонстрационный режим</small>
+</button>
+<p class="note">Это макет интерфейса. Настоящий VPN пока не подключён.</p>
+</div>
+<div class="section">ВАШ СЕРВЕР</div>
+<div class="item" onclick="page('servers')">
+<span class="flag" id="homeFlag">🇳🇱</span>
+<div class="grow"><div class="name" id="homeName">Нидерланды</div><div class="detail" id="homeCity">Амстердам</div></div>
+<span class="arrow">›</span>
+</div>
+</section>
+
+<section id="servers" class="page">
+<h2>Выбор сервера</h2>
+<p class="sub">Выбери страну</p>
+<div id="serverList"></div>
+<p class="note">Выбор пока демонстрационный.</p>
+</section>
+
+<section id="devices" class="page">
+<h2>Мои устройства</h2>
+<p class="sub">Два личных iPhone</p>
+<div class="item"><span class="flag">📱</span><div class="grow"><div class="name">Мой iPhone</div><div class="detail">Устройство 01</div></div></div>
+<div class="item"><span class="flag">📱</span><div class="grow"><div class="name">iPhone друга</div><div class="detail">Устройство 02</div></div></div>
+<div class="info"><b>Личный доступ</b><p>Позже создадим отдельные ключи WireGuard для каждого телефона.</p></div>
+</section>
+
+<section id="profile" class="page">
+<h2>Профиль</h2>
+<div class="panel"><div class="doll">🪆</div><h2>Matreahka VPN</h2><div class="sub">Версия 1.0</div></div>
+<div class="info"><b>О проекте</b><p>Личный VPN для двух iPhone. Без рекламы и лишних функций.</p></div>
+<div class="info"><b>Статус</b><p>Интерфейс создан. Сервер и настоящее VPN-соединение ещё не настроены.</p></div>
+</section>
+</div>
+
+<nav class="nav">
+<button class="active" onclick="page('home',this)"><span>⌂</span>Главная</button>
+<button onclick="page('servers',this)"><span>◎</span>Серверы</button>
+<button onclick="page('devices',this)"><span>▣</span>Устройства</button>
+<button onclick="page('profile',this)"><span>♙</span>Профиль</button>
+</nav>
+
+<script>
+const countries=[
+{name:'Нидерланды',city:'Амстердам',flag:'🇳🇱'},
+{name:'Германия',city:'Франкфурт',flag:'🇩🇪'},
+{name:'Финляндия',city:'Хельсинки',flag:'🇫🇮'},
+{name:'Польша',city:'Варшава',flag:'🇵🇱'}
+];
+let selected=0,connected=false;
+
+function page(id,button){
+document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));
+if(button)button.classList.add('active');
+else document.querySelectorAll('.nav button')[0].classList.add('active');
+window.scrollTo(0,0);
+}
+function render(){
+document.getElementById('serverList').innerHTML=countries.map((c,i)=>`
+<div class="item" onclick="choose(${i})">
+<span class="flag">${c.flag}</span>
+<div class="grow"><div class="name">${c.name}</div><div class="detail">${c.city}</div></div>
+<span class="arrow">${selected===i?'✓':'›'}</span>
+</div>`).join('');
+}
+function choose(i){
+selected=i;
+document.getElementById('homeFlag').textContent=countries[i].flag;
+document.getElementById('homeName').textContent=countries[i].name;
+document.getElementById('homeCity').textContent=countries[i].city;
+render();page('home');
+}
+document.getElementById('connect').onclick=()=>{
+connected=!connected;
+document.getElementById('status').textContent=connected?'ДЕМО: ВКЛЮЧЕНО':'НЕ ПОДКЛЮЧЕНО';
+document.getElementById('dot').style.background=connected?'#398653':'#b58c50';
+document.getElementById('symbol').textContent=connected?'Ⅱ':'✦';
+document.getElementById('connectText').textContent=connected?'ОТКЛЮЧИТЬ':'ПОДКЛЮЧИТЬ';
+document.getElementById('connect').style.background=connected?'#511e29':'#982b38';
+};
+render();
+</script>
+</body>
+</html>
